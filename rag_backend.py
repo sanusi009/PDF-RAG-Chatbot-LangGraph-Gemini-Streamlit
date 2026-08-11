@@ -126,11 +126,11 @@ def calculator(first_number: float, second_number: float, operation: str) -> dic
 def get_stock_price(symbol: str) -> dict:
     """
     Fetch latest stock price for a given symbol (e.g. 'AAPL', 'TSLA')
-    using Alpha Vantage with API key in the URL."""
-    url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey=VPR6JGH8Q4WXPB9I"
+    using Alpha Vantage."""
+    api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
+    url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={symbol}&apikey={api_key}"
     response = requests.get(url)
     return response.json()
-
 @tool
 def rag_tool(query: str, thread_id: Optional[str] = None) -> dict:
     
